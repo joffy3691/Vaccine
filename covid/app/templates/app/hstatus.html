@@ -1,0 +1,17 @@
+{% extends "app/base.html" %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<h1>Allotment Status</h1><br><br>
+<table>
+    {%for request in requests%}
+    <tr><td>Status: Confirmed <td></tr>
+    <tr><td>Confirmation Time: {{request.confirmtime}} IST <td></tr>
+    <tr><td><hr></td></tr>
+    <tr><td>User ID: {{request.user}}</td>
+    <td>Booking Date: {{request.time}}</td></tr>
+    {%endfor%}
+</table>
+<br>
+{%endif%}
+{% endblock %}
