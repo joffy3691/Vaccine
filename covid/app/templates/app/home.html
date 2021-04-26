@@ -1,8 +1,8 @@
-{% extends 'app/base.html' %}
+{% extends 'app/base2.html' %}
 
 {% block content %}
   <h2>Sign up for a free account</h2>
-  <p class="lead">Select below the type of account you want to create</p>
-  <a href="{% url 'pindex' %}" class="btn btn-student btn-lg" role="button">I'm a Patient</a>
-  <a href="{% url 'hindex' %}" class="btn btn-teacher btn-lg" role="button">I'm a Hospital</a>
+  <p>Select below the type of account you want to create</p>
+  <a href="{% url 'pindex' %}" class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" role="button">I'm a Patient</a>
+  <a href="{% url 'hindex' %}" class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" role="button">I'm a Hospital</a>
 {% endblock %}

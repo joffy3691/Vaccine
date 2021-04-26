@@ -1,0 +1,51 @@
+{% extends "app/base.html" %}
+
+{% block content %}
+{% if user.is_authenticated %}
+    <h5 class="display-2">
+      Welcome,
+      <small class="text-muted">{{user.first_name}} {{user.last_name}}</small>
+    </h5>
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+<div class="card" style="width: 18rem;">
+  <img src="https://media.istockphoto.com/vectors/job-application-resume-cv-document-with-man-photo-and-pen-employment-vector-id1079848874?k=6&m=1079848874&s=612x612&w=0&h=Mqk2dWbyF0zzTA5Uiea47A-n9PoQfufqC6pYN5LTdxo=" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">1) Fill Info About Your Hospital</h5>
+    <p class="card-text">Help us know understand your hospital better before proceeding</p><br>
+    <a href="{% url 'henroll' %}" class="btn btn-primary">Fill Form</a>
+  </div>
+</div>
+    </div>
+      <div class="col-sm">
+<div class="card" style="width: 18rem;">
+  <img src="https://img.freepik.com/free-vector/illustration-hospital_53876-81075.jpg?size=338&ext=jpg" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">2) Patient list</h5>
+    <p class="card-text">Select a hospital based on your convenience and distance</p><br>
+    <a href="{% url 'hstatus' %}" class="btn btn-warning" style="color:white !important;background-color:gold !important;border-color:gold !important;" >Status</a>
+
+  </div>
+</div>
+    </div>
+      <div class="col-sm">
+<div class="card" style="width: 18rem;">
+  <img src="https://st3.depositphotos.com/1001599/12961/v/950/depositphotos_129614330-stock-illustration-patient-lying-in-hospital-bed.jpg" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">3) Waiting List</h5>
+    <p class="card-text">Waiting list of patients</p>
+    <a href="{% url 'hstatus' %}" class="btn btn-success" style="color:white !important;background-color:green !important;border-color:green !important;">Check Waitlist</a>
+  </div>
+</div>
+    </div>
+  </div>
+</div>
+
+{% endif %}
+
+    </div>
+
+
+{% endblock %}

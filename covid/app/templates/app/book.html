@@ -5,20 +5,15 @@
 <form method='post'>
         {% csrf_token %}
 
-{% for hospital in hospitals %}
+{% for hospitali in hospitals %}
 
 <div>
   <div>
-    <h5>{{hospital.name}}</h5>
-    <p>{{hospital.address}}</p>
-    <p>Available Vaccine: {{hospital.available_Vaccine}}</p>
-    <p>Total Vaccine slots: {{hospital.total_Vaccine}}</p>
-    {% if hospital.available_Vaccine > 0 %}
-    <input type="hidden" name="hospital" value="{{hospital.id}}">
-    <input type="submit" value="Submit">
-    {% else %}
-    <p>No available Slots</p>
-    {% endif %}
+    <h5>{{hospitali.name}}</h5>
+    <p>{{hospitali.address}}</p>
+    <p>Available Vaccine: {{hospitali.available_Vaccine}}</p>
+    <p>Queue: {{hospitali.que}}</p>
+    <button name="hospital" type="submit" class="btn btn-success" value="{{hospitali.id}}">Book</button>
   </div>
 </div>
 {% endfor %}

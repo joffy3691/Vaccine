@@ -23,5 +23,4 @@ class HospitalAttributeForm(forms.ModelForm):
         fields=['name',
     'address',
     'phone',
-    'total_Vaccine',
     'available_Vaccine']

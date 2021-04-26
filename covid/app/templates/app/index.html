@@ -1,0 +1,165 @@
+{% extends "app/base.html" %}
+
+{% block content %}
+{% if user.is_authenticated %}
+    <h5 class="display-2">
+      Welcome,
+      <small class="text-muted">{{user.first_name}} {{user.last_name}}</small>
+    </h5>
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+<div class="card" style="width: 18rem;">
+  <img src="https://media.istockphoto.com/vectors/job-application-resume-cv-document-with-man-photo-and-pen-employment-vector-id1079848874?k=6&m=1079848874&s=612x612&w=0&h=Mqk2dWbyF0zzTA5Uiea47A-n9PoQfufqC6pYN5LTdxo=" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">1) Fill in the Form</h5>
+    <p class="card-text">Help us know understand your health condition better before proceeding</p><br>
+      {% if filled_form %}
+      <span style="color:green;text-align:center !important;">
+      <i class="fa fa-check-circle fa-3x" style="text-align:center !important;"></i>
+      </span>
+      {% else %}
+    <a href="{% url 'enroll' %}" class="btn btn-primary">Fill Form</a>
+      {% endif %}
+  </div>
+</div>
+    </div>
+      <div class="col-sm">
+<div class="card" style="width: 18rem;">
+  <img src="https://img.freepik.com/free-vector/illustration-hospital_53876-81075.jpg?size=338&ext=jpg" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">2) Request a bed in preferred hospitals</h5>
+    <p class="card-text">Select a hospital based on your convenience and distance</p><br>
+      {% if booked_hospital %}
+      <span style="color:green;text-align:center !important;">
+      <i class="fa fa-check-circle fa-3x" style="text-align:center !important;"></i>
+      </span>
+      {% else %}
+    <a href="{% url 'book' %}" class="btn btn-warning" style="color:white !important;background-color:gold !important;border-color:gold !important;" >Browse Hospitals</a>
+      {% endif %}
+
+  </div>
+</div>
+    </div>
+      <div class="col-sm">
+<div class="card" style="width: 18rem;">
+  <img src="https://st3.depositphotos.com/1001599/12961/v/950/depositphotos_129614330-stock-illustration-patient-lying-in-hospital-bed.jpg" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">3) Bed allotment</h5>
+    <p class="card-text">We will allot a bed in your preferred hospital based on availability and priority!</p>
+    <a href="{% url 'final' %}" class="btn btn-success" style="color:white !important;background-color:green !important;border-color:green !important;">Check Allotment</a>
+  </div>
+</div>
+    </div>
+  </div>
+</div>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+        <h3 style="text-align:center;">Tweets</h3>
+    </div>
+    <div class="col-sm">
+        <h3 style="text-align:center;">COVID Statistics - India </h3>
+    </div>
+  </div>
+</div>
+<div class="container-md">
+  <div class="row">
+    <div class="col-lg">
+     <a class="twitter-timeline" data-height="500" data-theme="dark" href="https://twitter.com/COVIDNewsByMIB?ref_src=twsrc%5Etfw">Tweets by COVIDNewsByMIB</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </div>
+    <div class="col-lg" style="overflow : hidden;
+    position : relative;">
+        <div class="row">
+
+        <iframe style="width:90%;height:138%;position : absolute;
+    top      : -200px;
+    left     : -0px;" scrolling="" src="https://www.covid19india.org" title="Covid Statistics - India"></iframe>
+    </div>
+    </div>
+  </div>
+
+
+<section class="counters1 counters cid-s6GWfKv3Od" id="counters1-2">
+
+
+
+
+
+    <div class="container">
+        <h2 class="mbr-section-title pb-3 align-center mbr-fonts-style display-2">
+            Counters
+        </h2>
+        <h3 class="mbr-section-subtitle mbr-fonts-style display-5">The Numbers</h3>
+
+        <div class="container pt-4 mt-2">
+            <div class="media-container-row">
+                <div class="card p-3 align-center col-12 col-md-6 col-lg-4">
+                    <div class="panel-item p-3">
+                        <div class="card-img pb-3">
+                            <span class="mbr-iconfont mbri-users"></span>
+                        </div>
+
+                        <div class="card-text">
+                            <h3 class="count pt-3 pb-3 mbr-fonts-style display-2">
+                                {{users}}
+                            </h3>
+                            <h4 class="mbr-content-title mbr-bold mbr-fonts-style display-7">
+                                Customers Served</h4>
+                            <p class="mbr-content-text mbr-fonts-style display-7">Patients are our main asset. Their safety is our first priority.</p>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="card p-3 align-center col-12 col-md-6 col-lg-4">
+                    <div class="panel-item p-3">
+                        <div class="card-img pb-3">
+                            <span class="mbr-iconfont mbri-login"></span>
+                        </div>
+                        <div class="card-text">
+                            <h3 class="count pt-3 pb-3 mbr-fonts-style display-2">
+                                {{bed_alloted}}
+                            </h3>
+                            <h4 class="mbr-content-title mbr-bold mbr-fonts-style display-7">
+                                Beds Allotted</h4>
+                            <p class="mbr-content-text mbr-fonts-style display-7">
+                                  We ensure that every patient is alloted a bed based on the severity of their condition
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card p-3 align-center col-12 col-md-6 col-lg-4">
+                    <div class="panel-item p-3">
+                        <div class="card-img pb-3">
+                            <span class="mbr-iconfont mbri-preview"></span>
+                        </div>
+                        <div class="card-text">
+                            <h3 class="count pt-3 pb-3 mbr-fonts-style display-2">
+                                {{hospitals}}
+                            </h3>
+                            <h4 class="mbr-content-title mbr-bold mbr-fonts-style display-7">
+                                Hospitals</h4>
+                            <p class="mbr-content-text mbr-fonts-style display-7">
+                            Hospitals that are part of our life-saving project
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+   </div>
+</section>
+{% endif %}
+
+    </div>
+
+
+{% endblock %}

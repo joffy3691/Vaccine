@@ -39,8 +39,8 @@ class Hospital(models.Model):
     name = models.CharField(max_length=100)
     address =  models.CharField(max_length=100)
     phone = models.CharField(max_length=10)
-    total_Vaccine = models.IntegerField()
     available_Vaccine = models.IntegerField()
+    que= models.IntegerField(default=0)
     def __str__(self):
         return self.name
 

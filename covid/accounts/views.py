@@ -13,7 +13,7 @@ class PatientSignUpView(CreateView):
 
     def form_valid(self, form):
         form.save()
-        return redirect('enroll')
+        return redirect('index')
 
 class HospitalSignUpView(CreateView):
     model = User
@@ -23,4 +23,4 @@ class HospitalSignUpView(CreateView):
 
     def form_valid(self, form):
         form.save()
-        return redirect('henroll')
+        return redirect('index2')
