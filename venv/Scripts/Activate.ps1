@@ -27,7 +27,7 @@ function global:deactivate ([switch]$NonDestructive) {
 
 deactivate -nondestructive
 
-$env:VIRTUAL_ENV="C:\Users\vishn\PycharmProjects\vaccine2\venv"
+$env:VIRTUAL_ENV="C:\Users\vishn\PycharmProjects\2\venv"
 
 if (! $env:VIRTUAL_ENV_DISABLE_PROMPT) {
     # Set the prompt to include the env name
