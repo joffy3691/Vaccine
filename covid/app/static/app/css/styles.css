@@ -165,7 +165,6 @@ a {
 }
 a:hover {
   color: #e6b301;
-  text-decoration: underline;
 }
 
 a:not([href]):not([class]) {
@@ -4322,7 +4321,9 @@ input[type=button].btn-block {
   background-color: #fff;
   background-clip: border-box;
   border: 1px solid rgba(0, 0, 0, 0.125);
-  border-radius: 0.25rem;
+  border-radius: 15px;
+  padding: 15px;
+  height: 550px;
 }
 .card > hr {
   margin-right: 0;
@@ -4350,7 +4351,6 @@ input[type=button].btn-block {
 .card-body {
   flex: 1 1 auto;
   min-height: 1px;
-  padding: 1.25rem;
 }
 
 .card-title {
