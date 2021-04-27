@@ -97,7 +97,7 @@ body {
   min-height: 100vh;
   font-size: 1.2rem;
 }
-
+/*
 a {
   text-decoration: none;
   cursor: pointer;
@@ -161,3 +161,4 @@ a:hover:after {
   width: 100%;
   left: 0;
 }
+*/
