@@ -1,0 +1,58 @@
+<style>
+  .hospital-row > :nth-child(3n+3) {
+    margin-right: 0;
+  }
+  .hospital-list {
+    margin-top: 150px;
+    border: 3px solid orange;
+    width: 100%;
+    padding: 20px;
+  }
+  .hospital-row {
+    display: flex;
+    margin-bottom: 20px;
+  }
+  .hospital-container {
+    text-align: center;
+    padding: 20px;
+    background-color: white;
+    border-radius: 15px;
+    width: 350px;
+    height: 350px;
+    margin-right: 20px;
+    font-size: 20px;
+  }
+  
+</style>
+{% extends "app/base.html" %}
+{% block content %}
+{% if user.is_authenticated %}
+{{ form.errors }}
+<div class="hospital-list">
+  <h1> Choose Hospital:</h1>
+  <br><br><hr>
+{% for hospitali in hospitals %}
+{% with counter=forloop.counter|add:"-1" %}
+{% if counter|divisibleby:3 %}
+<div class="hospital-row">
+  {% endif %}
+  {% endwith %}
+<div class="hospital-container">
+    <form method='post'>
+        {% csrf_token %}
+    <h4>{{hospitali.name}}</h4>
+    <br>
+    <p>Address:{{hospitali.address}}</p>
+    <p>Available Vaccine: {{hospitali.available_Vaccine}}</p>
+    <p>Queue: {{hospitali.que}}</p>
+    <button name="hospital" type="submit" class="btn btn-success" value="{{hospitali.id}}">Book</button>
+      </form>
+</div>
+  {% if forloop.counter|divisibleby:3 %}
+</div>
+  {% endif %}
+{% endfor %}
+</div>
+{% endif %}
+</div>
+{% endblock %}
