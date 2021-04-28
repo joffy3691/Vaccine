@@ -31,12 +31,12 @@
           <h5 class="card-title">1) Fill Hospital Details</h5>
           <p class="card-text">Help the patients with the details about your hospital.</p><br>
           {% if filled_form %}
-      <span style="color:green;text-align:center !important;">
-      <i class="fa fa-check-circle fa-3x" style="text-align:center !important;"></i>
-      </span>
-      {% else %}
-        <a href="{% url 'henroll' %}" class="btn btn-primary">Fill Form</a>
-      {% endif %}
+          <span style="color:green;text-align:center !important;">
+          <i class="fa fa-check-circle fa-3x" style="text-align:center !important;"></i>
+          </span>
+          {% else %}
+            <a href="{% url 'henroll' %}" class="btn btn-primary">Fill Form</a>
+          {% endif %}
         </div>
       </div>
     </div>

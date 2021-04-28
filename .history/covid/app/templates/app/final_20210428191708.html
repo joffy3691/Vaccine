@@ -4,14 +4,6 @@
         background-color: white;
         border-radius:20px;
         border: 1px solid black;
-        padding: 20px;
-    }
-    table {
-        padding: 0 20px;
-    }
-    .final-receipt ul li{
-        list-style-type: none;
-        margin-left: 125px;
     }
 </style>
 {% extends "app/base.html" %}
@@ -19,24 +11,26 @@
 {% block content %}
 {% if user.is_authenticated %}
 <div class="final-receipt">
-<h1>Allotment Status</h1>
-<hr>
+<h1>Allotment Status</h1><br><br>
+
 {% for patient in filled_form %}
-<center><table>
+<table>
     {% for booking in booked_hospital %}
     {% for hospital in hospitals %}
     {% if hospital.id == booking.hospital %}
     {% if booking.fulfilled %}
-    <tr><td style="background-color:black;color:green;">Status: Confirmed </td></tr>
-    <tr><td style="background-color:black;color:green;">Confirmation Time: {{booking.confirmtime}} IST </td></tr>
+    <tr><td style="background-color:black;color:green;">Status: Confirmed <td></tr>
+    <tr><td style="background-color:black;color:green;">Confirmation Time: {{booking.confirmtime}} IST <td></tr>
     {% else %}
     <tr><td style="background-color:black;color:yellow;">Status: Pending <td></tr>
-    <tr><td style="background-color:black;color:yellow;">There are {{queue}} patients in the queue</td></tr>
-    <tr><td style="background-color:black;color:yellow;">There are {{index|add:"-1"}} patients ahead of you</td></tr>
+    <tr><td style="background-color:black;color:yellow;">There are {{queue}} patients in the queue<td></tr>
+    <tr><td style="background-color:black;color:yellow;">There are {{index|add:"-1"}} patients ahead of you<td></tr>
     {% endif %}
     <tr><td><hr></td></tr>
-    <tr><td>Patient Name: {{user.first_name}} {{user.last_name}}</td></tr>
-    <tr><td>Age: {{patient.age}} yrs</td></tr>
+    
+    
+    <tr><td>Patient Name: {{user.first_name}} {{user.last_name}}<td></tr>
+    <tr><td>Age: {{patient.age}} yrs<td></tr>
     <tr><td>Comorbidities:  
             <ul>
             {% if patient.pneumonia %}<li>pneumonia</li>{% endif %}
@@ -52,18 +46,19 @@
             {% if patient.blood %}<li>blood disease</li>{% endif %}
             {% if patient.obesity %}<li>obesity</li>{% endif %}
             </ul>
-        </td></tr>
+    <td></tr>
     <tr><td>Booking Date: {{booking.time}}</td></tr>
     <tr><td><hr></td></tr>
-    <tr><th>Hospital Details </th></tr>
-    <tr><td>Hospital: {{hospital.name}} </tr></tr>
-    <tr><td>Address: {{hospital.address}} </tr></tr>
-    <tr><td>Phone: {{hospital.phone}} </tr></tr>
+    <tr><th>Hospital Details <th></tr>
+    <tr><td>Hospital: {{hospital.name}} <td></tr>
+    <tr><td>Address: {{hospital.address}} <td></tr>
+    <tr><td>Phone: {{hospital.phone}} <td></tr>
 
     {% endif %}
     {% endfor %}
     {% endfor %}
-</table></center>
+</table>
+<br>
 </div>
 {% endfor %}
 {% endif %}
