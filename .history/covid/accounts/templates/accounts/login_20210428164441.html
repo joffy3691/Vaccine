@@ -1,7 +1,6 @@
 <style>
     .padding{
-    padding:100px;
-    }
+    padding:100px;}
 </style>
 {% extends "app/base.html" %}
 {%load crispy_forms_tags %}
@@ -23,7 +22,7 @@
         <INPUT type="submit" name="submit" value="submit" />
         </FORM>
     <div class="border-top pt-3">
-        <small class="text-muted">Need an Account<a class="ml-2" href="{%url 'psup' %}">Sign up as patient</a>  <a class="ml-2" href="{%url 'hsup' %}">Sign up as hospital</a></small>
+        <small class="text-muted">Need an Account<a class="ml-2" href="{%url 'psup' %}">Sign up as patient</a>  <a class="ml-2" href="hsup">Sign up as hospital</a></small>
         </div>
 </div>
 </div>

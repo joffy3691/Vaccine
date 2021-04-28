@@ -1,3 +1,9 @@
+body {
+  background: #fafafa;
+  color: #333333;
+  margin-top: 5rem;
+}
+
 h1, h2, h3, h4, h5, h6 {
   color: #444444;
 }
@@ -84,6 +90,9 @@ a.article-title:hover {
 
 body {
   color:#4b4b4b;
+  background-image: url('Vaccine.jpg') ;
+  background-repeat: no-repeat;
+  background-size: cover;
   font-family: 'Poppins', sans-serif;
   min-height: 100vh;
   font-size: 1.2rem;

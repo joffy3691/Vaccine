@@ -1,25 +1,19 @@
-<style>
-  .patient-list {
-    margin-top: 150px;
-  }
-</style>
 {% extends "app/base.html" %}
 
 {% block content %}
 {% if user.is_authenticated %}
-<div class="patient-list">
 <h1>Allotment Status</h1><br><br>
 <table>
     {%for request in requests%}
-    <!--<tr><td>User ID: {{request.user}}</td>-->
+    <tr><td>User ID: {{request.user}}</td>
      {%for user1 in name%}
       {%if request.user == user1.id %}
-    <tr><td>Name: {{user1.first_name}} {{user1.last_name}}<td></tr>
+    <tr><td>User Name: {{user1.username}}<td></tr>
     {%endif%}
     {%endfor%}
     {%for users in UserDetails%}
       {%if users.user == request.user %}
-    <tr><td>Age: {{users.age}}<td></tr>
+    <tr><td>User Age: {{users.age}}<td></tr>
     <tr><td>Gender: {{users.gender}}<td></tr>
     <tr><td>Comorbidities: {% if users.pneumonia %}pneumonia{% endif %}
                              {% if users.breathing %}breathing problem{% endif %}
@@ -34,6 +28,8 @@
     {%endif%}
     {%endfor%}
     <td>Booking Date: {{request.time}}</td></tr>
+    <tr><td>Status: Confirmed <td></tr>
+    <tr><td>Confirmation Time: {{request.confirmtime}} IST <td></tr>
     <tr><td><hr></td></tr>
     {%endfor%}
 
@@ -41,6 +37,5 @@
 
 </table>
 <br>
-</div>
 {%endif%}
 {% endblock %}

@@ -14,7 +14,7 @@
     <!--<tr><td>User ID: {{request.user}}</td>-->
      {%for user1 in name%}
       {%if request.user == user1.id %}
-    <tr><td>Name: {{user1.first_name}} {{user1.last_name}}<td></tr>
+    <tr><td>Name: {{user1.username}}<td></tr>
     {%endif%}
     {%endfor%}
     {%for users in UserDetails%}
