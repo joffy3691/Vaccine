@@ -32,6 +32,11 @@
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#services">Services</a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#team">Team</a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">Contact</a></li>
+                        {% if user.is_authenticated %}
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href={% url 'logout' %}>logout</a></li>
+                        {% else %}
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href={% url 'login' %}>login</a></li>
+                        {% endif%}
                     </ul>
                 </div>
             </div>
@@ -192,6 +197,7 @@
         <!-- Contact form JS-->
         <script src="{% static 'app/assets/mail/jqBootstrapValidation.js'%}"></script>
         <script src="{%static 'app/assets/mail/contact_me.js'%}"></script>
+    <script src="{%static 'app/js/scripts.js'%}"></script>
     
     </body>
 </html>

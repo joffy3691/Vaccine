@@ -15,7 +15,13 @@
   <div class="card-body">
     <h5 class="card-title">1) Fill Info About Your Hospital</h5>
     <p class="card-text">Help us know understand your hospital better before proceeding</p><br>
-    <a href="{% url 'henroll' %}" class="btn btn-primary">Fill Form</a>
+    {% if filled_form %}
+          <span style="color:green;text-align:center !important;">
+          <i class="fa fa-check-circle fa-3x" style="text-align:center !important;"></i>
+          </span>
+          {% else %}
+            <a href="{% url 'henroll' %}" class="btn btn-primary">Fill Form</a>
+          {% endif %}
   </div>
 </div>
     </div>

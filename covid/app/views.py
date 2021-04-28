@@ -158,6 +158,7 @@ class HospitalIndexPageView(TemplateView):
     def get_context_data(self, **kwargs):
         context = {}
         context['user'] = self.request.user
+        context['filled_form'] = Hospital.objects.filter(admin=context['user'].id)
         return context
 
 @method_decorator([login_required, hospital_required], name='dispatch')

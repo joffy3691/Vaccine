@@ -23,7 +23,7 @@
     {% else %}
     <tr><td style="background-color:black;color:yellow;">Status: Pending <td></tr>
     <tr><td style="background-color:black;color:yellow;">There are {{queue}} patients in the queue<td></tr>
-    <tr><td style="background-color:black;color:yellow;">There are {{index}} patients ahead of you<td></tr>
+    <tr><td style="background-color:black;color:yellow;">There are {{index|add:"-1"}} patients ahead of you<td></tr>
     {% endif %}
     <tr><td><hr></td></tr>
     <tr><td>User ID: {{patient.user}}</td></tr>

@@ -1,20 +1,29 @@
+<style>
+    .padding{
+    padding:100px;}
+</style>
 {% extends "app/base.html" %}
 {%load crispy_forms_tags %}
 {% block content %}
+<div class="padding">
 <div class="content-section">
-    <form method="POST">
+    <FORM id="login_form" method="post" action="{%url 'login' %}">
         {% csrf_token %}
-        <fieldset class="form-group">
-            <legend class="border-bottom mb-4">Login</legend>
-            {{form|crispy }}
-        </fieldset>
-        <div class="form-group">
-            <button class="btn btn-outline-info" type="submit">Login</button>
-        </div>
-    </form>
+                Username:
+                <input type="text" name="username" value="" id="username" size="50" />
+            <br />
+                Password:
+                <input type="password" name="password" value="" id="password" size="50" />
+                <br />
+        {% if error %}
+        {{error}}
+        {% endif %}
+        <br>
+        <INPUT type="submit" name="submit" value="submit" />
+        </FORM>
     <div class="border-top pt-3">
-        <small class="text-muted">Need an Account<a class="ml-2" href="">Sign up now</a></small>
+        <small class="text-muted">Need an Account<a class="ml-2" href="{%url 'psup' %}">Sign up as patient</a>  <a class="ml-2" href="hsup">Sign up as hospital</a></small>
         </div>
 </div>
-
+</div>
 {% endblock %}
