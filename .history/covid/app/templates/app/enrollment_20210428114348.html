@@ -1,0 +1,24 @@
+<style>
+    .symptoms {
+        margin-top: 80px;
+        background-color: white;
+        border-radius: 20px;
+        padding: 20px;
+    }
+    input[type='number'] {
+        width: 100px;
+    }
+    input {
+        text-align: right;
+    }
+</style>
+{% extends "app/base.html" %}
+{% block content %}
+<div class="symptoms">
+    <form method='POST'>
+        {%csrf_token%}
+        {{form.as_p}}
+        <input type='submit' value='Save'/>
+    </form>
+</div>
+{% endblock %}

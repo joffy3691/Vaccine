@@ -1,0 +1,19 @@
+<style>
+  .access-type {
+    margin-top: 200px;
+    background-color: white;
+    border-radius: 15px;
+    padding: 30px;
+  }
+</style>
+{% extends 'app/base.html' %}
+
+{% block content %}
+<div class="access-type">
+  <h2>Sign up for an account</h2>
+  <hr>
+  <p class="lead">Select below the type of account you want to create</p>
+  <a href="{% url 'index' %}" class="btn btn-student btn-lg btn-success" role="button">Login</a>
+  <a href="{% url 'psup' %}" class="btn btn-teacher btn-lg btn-success" role="button">Sign up</a>
+</div>
+{% endblock %}

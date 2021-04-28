@@ -1,0 +1,47 @@
+<style>
+    .symptomPage {
+        margin-top: 150px;
+        width: 100%;
+        background-color: white;
+        border-radius: 20px;
+        padding: 20px;
+    }
+    
+    .symptoms {
+        background-color:lightskyblue;
+        border-radius: 20px;
+        padding: 20px;
+        font-size: 25px;
+        width: 50%;
+        margin: 20px auto;
+    }
+    input[type='number'],input[type='checkbox'],  select {
+        float: right;
+    }
+    input[type='submit'] {
+        font-size: 25px;
+        margin-left: 500px;
+        background-color: firebrick;
+        border: none;
+        padding: 10px 20px;
+    }
+    input[type='checkbox'] {
+        transform: scale(1.75);
+        margin-top: 13px;
+    }
+    
+</style>
+{% extends "app/base.html" %}
+{% block content %}
+<div class="symptomPage">
+    <h2>Enter the Symptoms:</h2>
+    <hr>
+    <form method='POST'>
+    <div class="symptoms">
+            {%csrf_token%}
+            {{form.as_p}}
+    </div>
+    <input class="submit1" type='submit' value='Submit'/>
+</form>
+</div>
+{% endblock %}
