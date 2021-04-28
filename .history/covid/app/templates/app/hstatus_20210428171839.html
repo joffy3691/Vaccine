@@ -14,12 +14,12 @@
     <!--<tr><td>User ID: {{request.user}}</td>-->
      {%for user1 in name%}
       {%if request.user == user1.id %}
-    <tr><td>Name: {{user1.first_name}} {{user1.last_name}}<td></tr>
+    <tr><td>User Name: {{user1.username}}<td></tr>
     {%endif%}
     {%endfor%}
     {%for users in UserDetails%}
       {%if users.user == request.user %}
-    <tr><td>Age: {{users.age}}<td></tr>
+    <tr><td>User Age: {{users.age}}<td></tr>
     <tr><td>Gender: {{users.gender}}<td></tr>
     <tr><td>Comorbidities: {% if users.pneumonia %}pneumonia{% endif %}
                              {% if users.breathing %}breathing problem{% endif %}
