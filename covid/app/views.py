@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .forms import UserAttributeForm,HospitalForm,HospitalAttributeForm
+from .forms import UserAttributeForm,HospitalForm,HospitalAttributeForm,VaccineForm
 from .models import User_Attributes,Hospital,Request
 from accounts.models import User
 from django.views.generic import FormView,TemplateView
@@ -184,7 +184,41 @@ class Hstatus(TemplateView):
         t=Hospital.objects.filter(admin=u)[0]
         print(t.id)
         context = {}
-        context['requests'] = Request.objects.filter(hospital=t.id)
+        context['requests'] = Request.objects.filter(fulfilled=1).filter(hospital=t.id)
         context['UserDetails']=User_Attributes.objects.all()
         context['name']=User.objects.all()
         return context
+
+@method_decorator([login_required, hospital_required], name='dispatch')
+class VaccineView(FormView):
+    template_name = 'app/vaccine.html'
+    form_class = VaccineForm
+
+    def get_context_data(self, **kwargs):
+        context ={}
+        context['user'] = self.request.user
+        context['hospital'] = Hospital.objects.filter(admin=context['user'].id)[0]
+        return context
+    def form_valid(self, form):
+        request = self.request
+        user = self.request.user.id
+        vaccine = form.cleaned_data['vaccine']
+        hospital = Hospital.objects.filter(admin=user)[0]
+        hospital.available_Vaccine=hospital.available_Vaccine+vaccine;
+        try:
+            avb =hospital.available_Vaccine
+            while avb > 0:
+                pending =Request.objects.filter(hospital=hospital.id).filter(fulfilled=0).order_by('priority')[0]
+                if(pending):
+                    pending.fulfilled = 1
+                    pending.confirmtime = datetime.datetime.now()
+                    pending.save()
+                    hospital.available_Vaccine -= 1
+                    hospital.save()
+                avb -= 1
+            hospital.que=Request.objects.filter(fulfilled=0).filter(hospital=hospital.id).count()
+            hospital.save()
+        except:
+            pass
+        hospital.save()
+        return redirect('index2')

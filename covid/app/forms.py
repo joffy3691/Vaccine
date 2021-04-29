@@ -24,3 +24,6 @@ class HospitalAttributeForm(forms.ModelForm):
     'address',
     'phone',
     'available_Vaccine']
+
+class VaccineForm(forms.Form):
+    vaccine = forms.IntegerField()

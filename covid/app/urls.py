@@ -1,6 +1,6 @@
 from django.urls import path
 from . import views
-from .views import Enrollment,HospitalPageView,Final,Henrollment,Hstatus,IndexPageView,HospitalIndexPageView
+from .views import Enrollment,HospitalPageView,Final,Henrollment,Hstatus,IndexPageView,HospitalIndexPageView,VaccineView
 urlpatterns = [
     path('',views.home,name='home'),
     path('enroll/',Enrollment.as_view(),name='enroll'),
@@ -13,4 +13,5 @@ urlpatterns = [
     path('hinde/',views.Hindex,name='hindex'),
 path('index/',IndexPageView.as_view(),name='index'),
 path('index2/',HospitalIndexPageView.as_view(),name='index2'),
+path('vaccine/',VaccineView.as_view(),name='vaccine'),
 ]
