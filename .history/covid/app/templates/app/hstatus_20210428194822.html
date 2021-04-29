@@ -18,6 +18,7 @@
 <h1>Allotment Status</h1>
 <hr>
 <table>
+    <div class="patient">
       {%for request in requests%}
     
     <!--<tr><td>User ID: {{request.user}}</td>-->
@@ -48,9 +49,10 @@
         {%endif%}
       {%endfor%}
       <td>Booking Date: {{request.time}}</td></tr>
-      <tr><td><hr></td></tr>
       {%endfor%}
     </div>
 </table>
+<br>
+</div>
 {%endif%}
 {% endblock %}

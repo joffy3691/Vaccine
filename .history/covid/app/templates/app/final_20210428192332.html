@@ -27,12 +27,12 @@
     {% for hospital in hospitals %}
     {% if hospital.id == booking.hospital %}
     {% if booking.fulfilled %}
-    <tr><td style="background-color:black;color:green;">Status: Confirmed </td></tr>
-    <tr><td style="background-color:black;color:green;">Confirmation Time: {{booking.confirmtime}} IST </td></tr>
+    <tr><td style="background-color:black;color:green;">Status: Confirmed <td></tr>
+    <tr><td style="background-color:black;color:green;">Confirmation Time: {{booking.confirmtime}} IST <td></tr>
     {% else %}
     <tr><td style="background-color:black;color:yellow;">Status: Pending <td></tr>
-    <tr><td style="background-color:black;color:yellow;">There are {{queue}} patients in the queue</td></tr>
-    <tr><td style="background-color:black;color:yellow;">There are {{index|add:"-1"}} patients ahead of you</td></tr>
+    <tr><td style="background-color:black;color:yellow;">There are {{queue}} patients in the queue<td></tr>
+    <tr><td style="background-color:black;color:yellow;">There are {{index|add:"-1"}} patients ahead of you<td></tr>
     {% endif %}
     <tr><td><hr></td></tr>
     <tr><td>Patient Name: {{user.first_name}} {{user.last_name}}</td></tr>
