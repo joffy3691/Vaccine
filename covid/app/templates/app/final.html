@@ -29,6 +29,18 @@
     {% if booking.fulfilled %}
     <tr><td style="background-color:black;color:green;">Status: Confirmed </td></tr>
     <tr><td style="background-color:black;color:green;">Confirmation Time: {{booking.confirmtime}} IST </td></tr>
+    {% if booking.confirmtime == "NA" %}
+    <form method='post'>
+        {% csrf_token %}
+    <input type="date" id="date" name="date" min="{{Mindate}}" max="{{Maxdate}}">
+    <select name="time" id="time">
+  <option value="10am-12am">10am-12am</option>
+  <option value="1pm-3pm">1pm-3pm</option>
+  <option value="4pm-6pm">4pm-6pm</option>
+</select>
+  <input type="submit">
+         </form>
+    {% endif %}
     {% else %}
     <tr><td style="background-color:black;color:yellow;">Status: Pending <td></tr>
     <tr><td style="background-color:black;color:yellow;">There are {{queue}} patients in the queue</td></tr>

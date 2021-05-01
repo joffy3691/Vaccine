@@ -27,3 +27,6 @@ class HospitalAttributeForm(forms.ModelForm):
 
 class VaccineForm(forms.Form):
     vaccine = forms.IntegerField()
+class DateForm(forms.Form):
+    date = forms.CharField(max_length=100)
+    time= forms.CharField(max_length=100)

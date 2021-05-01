@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .forms import UserAttributeForm,HospitalForm,HospitalAttributeForm,VaccineForm
+from .forms import UserAttributeForm,HospitalForm,HospitalAttributeForm,VaccineForm,DateForm
 from .models import User_Attributes,Hospital,Request
 from accounts.models import User
 from django.views.generic import FormView,TemplateView
@@ -70,7 +70,6 @@ class HospitalPageView(FormView):
                 while avb > 0:
                     pending = Request.objects.filter(hospital=Hospital.objects.all()[i].id).filter(fulfilled=0).order_by('priority')[0]
                     pending.fulfilled = 1
-                    pending.confirmtime = datetime.datetime.now()
                     pending.save()
                     avb -= 1
                     obj.available_Vaccine -= 1
@@ -92,7 +91,6 @@ class HospitalPageView(FormView):
             pref_hospital.available_Vaccine -= 1
             pref_hospital.save()
             fulfilled = 1
-            confirmtime = (pref_hospital.available_Vaccine)*0.5+9
         det = User_Attributes.objects.filter(user=self.request.user.id).latest('id')
         breathing = det.breathing
         pneumonia = det.pneumonia
@@ -118,12 +116,18 @@ class HospitalPageView(FormView):
         return redirect('index')
 
 @method_decorator([login_required, patient_required], name='dispatch')
-class Final(TemplateView):
+class Final(FormView):
     template_name = 'app/final.html'
+    form_class = DateForm
 
     def get_context_data(self, **kwargs):
         context = {}
         context['user'] = self.request.user
+        x = datetime.datetime.now()
+        x = x + datetime.timedelta(days=1)
+        y=x+datetime.timedelta(days=6)
+        context['Mindate']=x.strftime("%Y-%m-%d")
+        context['Maxdate'] = y.strftime("%Y-%m-%d")
         try:
             context['filled_form'] = User_Attributes.objects.filter(user=context['user'].id)
             context['booked_hospital'] = Request.objects.filter(user=context['user'].id)
@@ -132,7 +136,6 @@ class Final(TemplateView):
             while avb > 0:
                 pending =Request.objects.filter(hospital=context['booked_hospital'][0].hospital).filter(fulfilled=0).order_by('priority')[0]
                 pending.fulfilled = 1
-                pending.confirmtime = datetime.datetime.now()
                 pending.save()
                 avb -= 1
                 av.available_Vaccine -= 1
@@ -146,6 +149,15 @@ class Final(TemplateView):
             pass
         context['hospitals'] = Hospital.objects.all()
         return context
+    def form_valid(self, form):
+        request = self.request
+        user = self.request.user.id
+        date = form.cleaned_data['date']
+        time=form.cleaned_data['time']
+        u=Request.objects.filter(user=user)[0]
+        u.confirmtime=date+" "+time
+        u.save()
+        return redirect('final')
 
 @method_decorator([login_required, patient_required], name='dispatch')
 def phase2(request):
@@ -211,7 +223,6 @@ class VaccineView(FormView):
                 pending =Request.objects.filter(hospital=hospital.id).filter(fulfilled=0).order_by('priority')[0]
                 if(pending):
                     pending.fulfilled = 1
-                    pending.confirmtime = datetime.datetime.now()
                     pending.save()
                     hospital.available_Vaccine -= 1
                     hospital.save()
