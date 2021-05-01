@@ -32,10 +32,15 @@ background: linear-gradient(to right, #FFD200, #F7971E); /* W3C, IE 10+/ Edge, F
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav text-uppercase ml-auto">
-                        <li class="nav-item"><a class="nav-link" href="{%url 'home'%}">Home</a></li>
                         {% if user.is_authenticated %}
+                        {% if user.is_patient %}
+                        <li class="nav-item"><a class="nav-link" href="{%url 'index'%}">Home</a></li>
+                        {% else %}
+                        <li class="nav-item"><a class="nav-link" href="{%url 'index2'%}">Home</a></li>
+                        {% endif%}
                         <li class="nav-item"><a class="nav-link" href="{%url 'logout'%}">Logout</a></li>
                         {% else %}
+                        <li class="nav-item"><a class="nav-link" href="{%url 'home'%}">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="{%url 'login'%}">Login</a></li>
                         {% endif%}
                     </ul>
