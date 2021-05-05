@@ -1,27 +1,41 @@
 <style>
-  .hospital-row > :nth-child(3n+3) {
-    margin-right: 0;
-  }
+  
   .hospital-list {
     margin-top: 150px;
+    border: 1px solid black;
     border-radius: 30px;
     width: 100%;
     padding: 20px;
     background-color: white;
-  }
-  .hospital-row {
     display: flex;
-    margin-bottom: 20px;
+    flex-direction: column;
+    align-items: center;
   }
   .hospital-container {
     text-align: center;
     padding: 20px;
     background-color: lightgreen;
     border-radius: 15px;
-    width: 350px;
-    height: 350px;
-    margin-right: 20px;
+    width: 50%;
+    margin: 50px 0;
     font-size: 20px;
+  }
+  .vaccine {
+    padding: 20px;
+    width: 50%;
+    text-align: center;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    background-color: lightgreen;
+    font-size: 20px;
+  }
+
+  input[type=number] {
+    border: 1px solid lightgreen;
+    border-radius: 20px;
+    padding: 5px;
+    text-align: right;
+    outline: none;
   }
 
 </style>
@@ -30,18 +44,20 @@
 {% if user.is_authenticated %}
 {{ form.errors }}
 <div class="hospital-list">
-<div class="hospital-container">
-    <form method='post'>
-        {% csrf_token %}
-    <h4>{{hospital.name}}</h4>
-    <br>
-    <p>Address:{{hospital.address}}</p>
-    <p>Available Vaccine: {{hospital.available_Vaccine}}</p>
-    <p>Queue: {{hospital.que}}</p>
-        <input type="number" name="vaccine" value="0">
-    <button name="hospital" type="submit" class="btn btn-dark" style="border-radius: 15px;" value="Update">Book</button>
+  <h2>Vaccine Updation</h2>
+  <div class="hospital-container">
+      <form method='post'>
+          {% csrf_token %}
+        <h4>{{hospital.name}}</h4>
+        <p>Address:{{hospital.address}}</p>
+        <p>Available Vaccine: {{hospital.available_Vaccine}}</p>
+        <p>Queue: {{hospital.que}}</p>
+        </div>
+        <div class="vaccine">
+          Number of Vaccines: <input type="number" name="vaccine" value="0" min="1">
+          <button name="hospital" type="submit" class="btn btn-dark" style="border-radius: 15px; margin-top: 20px;" value="Update">Update Inventory</button>
+        </div>
       </form>
-</div>
 {% endif %}
 </div>
 {% endblock %}
