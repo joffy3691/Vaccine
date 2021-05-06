@@ -1,16 +1,19 @@
 <style>
-    .content-section {
+    .signup-section {
         margin-top: 120px;
+        border: 1px solid black;
+        border-radius: 20px;
+        padding: 20px;
     }
 </style>
 {% extends "app/base.html" %}
 {%load crispy_forms_tags %}
 {% block content %}
-<div class="content-section">
+<div class="signup-section">
     <form method="POST">
         {% csrf_token %}
         <fieldset class="form-group">
-            <legend class="border-bottom mb-4">Join Today</legend>
+            <legend class="border-bottom mb-4">Sign Up as Patient</legend>
             {{form|crispy }}
         </fieldset>
         <div class="form-group">
@@ -18,8 +21,7 @@
         </div>
     </form>
     <div class="border-top pt-3">
-        <small class="text-muted">Already have an Account<a class="ml-2" href="{%url 'login' %}"></a></small>
-        </div>
+        <small class="text-muted">Already have an Account</small><a class="ml-2" href="{%url 'login' %}">Sign In</a>
+    </div>
 </div>
-
 {% endblock %}
