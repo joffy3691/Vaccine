@@ -40,7 +40,7 @@ class PatientSignUpView(CreateView):
 class HospitalSignUpView(CreateView):
     model = User
     form_class = HospitalForm
-    template_name = 'accounts/register.html'
+    template_name = 'accounts/register1.html'
 
 
     def form_valid(self, form):
