@@ -1,0 +1,75 @@
+<style>
+  .hospital-page {
+    margin-top: 100px;
+    width: 100%;
+  }
+  .card-wrappers {
+    display: flex;
+    margin-top: 50px;
+  }
+
+  .btn-primary, .btn-success, .btn-warning {
+    position: absolute;
+    bottom: 40px;
+  }
+</style>
+{% extends "app/base.html" %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<div class="hospital-page">
+    <h5 class="display-2">
+      Welcome,
+      <small class="text-muted">{{user.first_name}} {{user.last_name}}</small>
+    </h5>
+<br>
+  <div class="card-wrappers">
+    <div class="col-sm">
+      <div class="card" style="width: 20rem;">
+        <img src="https://media.istockphoto.com/vectors/job-application-resume-cv-document-with-man-photo-and-pen-employment-vector-id1079848874?k=6&m=1079848874&s=612x612&w=0&h=Mqk2dWbyF0zzTA5Uiea47A-n9PoQfufqC6pYN5LTdxo=" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">1) Fill Hospital Details</h5>
+          <p class="card-text">Help the patients with the details about your hospital.</p><br>
+          {% if filled_form %}
+      <span style="color:green;text-align:center !important;">
+      <i class="fa fa-check-circle fa-3x" style="text-align:center !important;"></i>
+      </span>
+      {% else %}
+        <a href="{% url 'henroll' %}" class="btn btn-primary">Fill Form</a>
+      {% endif %}
+        </div>
+      </div>
+    </div>
+      <div class="col-sm">
+        <div class="card" style="width: 20rem;">
+          <img src="https://www.kindpng.com/picc/m/68-686834_vector-check-list-clipart-png-download-checklist-clipart.png" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">2) Patient List</h5>
+            <p class="card-text">View the list of patients that have been alloted avaccination slot in your hospital.</p><br>
+              {% if booked_hospital %}
+              <span style="color:green;text-align:center !important;">
+              <i class="fa fa-check-circle fa-3x" style="text-align:center !important;"></i>
+              </span>
+              {% else %}
+            <a href="{% url 'hstatus' %}" class="btn btn-warning" style="color:white !important;background-color:gold !important;border-color:gold !important;" >Patient List</a>
+              {% endif %}
+          </div>
+        </div>
+      </div>
+    
+      <div class="col-sm">
+      <div class="card" style="width: 20rem;">
+        <img src="https://etimg.etb2bimg.com/photo/81324674.cms" height="288" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">3) Vaccine Updation</h5>
+          <p class="card-text">Update the number of vaccines, upon the arrival of a fresh batch.</p>
+          <a href="{% url 'vaccine' %}" class="btn btn-success" style="color:white !important;background-color:green !important;border-color:green !important;">Update</a>
+        </div>
+      </div>
+      </div>
+  </div>
+{% endif %}
+
+</div>
+
+{% endblock %}

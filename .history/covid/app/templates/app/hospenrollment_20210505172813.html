@@ -1,0 +1,50 @@
+<style>
+    .hospital-form {
+        margin-top: 150px;
+        border: 1px solid black;
+        padding: 20px;
+        width: 100%;
+        border-radius: 10px;
+    }
+    input[type='text'], input[type='number'] {
+        float: right;
+        border-radius: 20px;
+        outline: none;
+        border: 1px solid lightblue;
+        padding: ;
+    }
+    .hospital-details {
+        background-color:lightskyblue;
+        border-radius: 20px;
+        padding: 40px;
+        font-size: 25px;
+        width: 60%;
+        margin: 20px auto;
+    }
+    input[type='submit'] {
+        font-size: 25px;
+        margin-left: 500px;
+        background-color: firebrick;
+        border: none;
+        padding: 10px 20px;
+        color: white;
+        border-radius: 15px;
+    }
+    p {
+        margin-bottom: 20px;
+    }
+</style>
+{% extends "app/base.html" %}
+{% block content %}
+<div class="hospital-form">
+    <h2>Enter Hospital Details</h2>
+    <hr>
+    <form method='POST'>
+        <div class="hospital-details">
+            {%csrf_token%}
+            {{form.as_p}}
+        </div>
+        <input type='submit' value='Save'/>
+    </form>
+</div>
+{% endblock %}

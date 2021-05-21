@@ -1,0 +1,59 @@
+<style>
+  .patient-list {
+    margin: 150px 0 50px 225px;
+    border: 2px solid black;
+    border-radius: 15px;
+    padding: 30px 100px 30px 80px;
+  }
+  .patient {
+    border: 2px solid red;
+  }
+  
+</style>
+{% extends "app/base.html" %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<div class="patient-list">
+<h1>Patient List</h1>
+<hr>
+<table>
+      {%for request in requests%}
+    
+    <!--<tr><td>User ID: {{request.user}}</td>-->
+      {%for user1 in name%}
+        {%if request.user == user1.id %}
+          <tr><td>Name: {{user1.first_name}} {{user1.last_name}}<td></tr>
+        {%endif%}
+      {%endfor%}
+      {%for users in UserDetails%}
+        {%if users.user == request.user %}
+          <tr><td>Age: {{users.age}}<td></tr>
+          <tr><td>Gender: {{users.gender}}<td></tr>
+          <tr><td>
+            Comorbidities: 
+            {% if users.pneumonia %}pneumonia{% endif %}
+            {% if users.breathing %}breathing problem{% endif %}
+            {% if users.pregnant %}pregnant{% endif %}
+            {% if users.smoker %}smoker{% endif %}
+            {% if users.diabetic %}diabetic{% endif %}
+            {% if users.ckd %}ckd{% endif %}
+            {% if users.copd %}copd{% endif %}
+            {% if users.immunocompromised %}immunocompromised{% endif %}
+            {% if users.heart %}heart disease{% endif %}
+            {% if users.asthma %}asthma{% endif %}
+            {% if users.blood %}blood disease{% endif %}
+            {% if users.obesity %}obesity{% endif %}
+          <td></tr>
+        {%endif%}
+      {%endfor%}
+      <td>Booking Details: {{request.confirmtime}}</td></tr>
+      <tr><td><hr></td></tr>
+      {% endfor %}
+</table>
+    {% if requests|length == 0 %}
+      No patients allotted
+    {% endif %}
+</div>
+{%endif%}
+{% endblock %}

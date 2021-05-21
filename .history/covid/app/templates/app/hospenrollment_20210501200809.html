@@ -1,0 +1,16 @@
+<style>
+    .hospital-form {
+        margin-top: 150px;
+        border: 1px solid black;
+    }
+</style>
+{% extends "app/base.html" %}
+{% block content %}
+<div class="hospital-form">
+    <form method='POST'>
+        {%csrf_token%}
+        {{form.as_p}}
+        <input type='submit' value='Save'/>
+    </form>
+</div>
+{% endblock %}
