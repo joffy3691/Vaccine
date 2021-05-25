@@ -1,0 +1,119 @@
+<style>
+    .final-receipt {
+        margin-top: 150px;
+        background-color: white;
+        border-radius:20px;
+        border: 1px solid black;
+        padding: 20px;
+        width: 100%;
+    }
+
+    td, th {
+        padding: 10px;
+    }
+
+    .table-container{
+        display: flex;
+        justify-content: center;
+    }
+    .final-receipt ul li{
+        list-style-type: none;
+        margin-left: 125px;
+    }
+</style>
+{% extends "app/base.html" %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<div class="final-receipt">
+    <h1>Allotment Status</h1>
+    <hr>
+    {% for patient in filled_form %}
+    <div class="table-container">
+        <table width="75%" border="1">
+            {% for booking in booked_hospital %}
+            {% for hospital in hospitals %}
+            {% if hospital.id == booking.hospital %}
+            
+                    <tr>
+                        <th>Patient Details:</th>
+                        <th>Hospital Details:</th>
+                    </tr>
+                    
+                    <tr>
+                        <td>Patient Name: {{user.first_name}} {{user.last_name}}</td>
+                        <td>Hospital: {{hospital.name}}</td>
+                    </tr>
+                    <tr>
+                        <td>Age: {{patient.age}} yrs</td>
+                        <td>Address: {{hospital.address}}</td>
+                    </tr>
+                    <tr>
+                        <td>Comorbidities:  
+                            <ul>
+                            {% if patient.pneumonia %}<li>pneumonia</li>{% endif %}
+                            {% if patient.breathing %}<li>breathing problem</li>{% endif %}
+                            {% if patient.pregnant %}<li>pregnant</li>{% endif %}
+                            {% if patient.smoker %}<li>smoker</li>{% endif %}
+                            {% if patient.diabetic %}<li>diabetic</li>{% endif %}
+                            {% if patient.ckd %}<li>ckd</li>{% endif %}  
+                            {% if patient.copd %}<li>copd</li>{% endif %} 
+                            {% if patient.immunocompromised %}<li>immunocompromised</li>{% endif %}
+                            {% if patient.heart %}<li>heart disease</li>{% endif %}
+                            {% if patient.asthma %}<li>asthma</li>{% endif %}
+                            {% if patient.blood %}<li>blood disease</li>{% endif %}
+                            {% if patient.obesity %}<li>obesity</li>{% endif %}
+                            </ul>
+                        </td>
+                        <td style="vertical-align: baseline;">Phone: {{hospital.phone}}</td>
+                    </tr>       
+                {% if booking.fulfilled %}
+                <tr>
+                    <td style="color:green;" colspan="2">
+                        <center>
+                            Status: Confirmed
+                        </center>
+                    </td>
+                </tr>
+            
+                {% if booking.confirmtime == "NA" %}
+                <form method='post'>
+                    {% csrf_token %}
+                    <tr>
+                        <td colspan="2">
+                            <center>
+                                Choose a slot: <input type="date" id="date" name="date" min="{{Mindate}}" max="{{Maxdate}}">
+                        
+                                <select name="time" id="time">
+                                    <option value="10am-12am">10am-12am</option>
+                                    <option value="1pm-3pm">1pm-3pm</option>
+                                    <option value="4pm-6pm">4pm-6pm</option>
+                                </select>
+                                <input type="submit" value="Book Slot">
+                            </center>
+                        </td>
+                    </tr>
+                </form>
+                {% else %}
+                <tr>
+                    <td style="color:green;" colspan="2">
+                        <center>
+                            Confirmation Time: {{booking.confirmtime}} IST 
+                        </center>
+                    </td>
+                </tr>
+                {% endif %}
+                {% else %}
+                <tr><td style="color:yellow;" colspan="2"><center>Status: Pending</center> <td></tr>
+                <tr><td style="color:yellow;" colspan="2"><center>There are {{queue}} patients in the queue</center></td></tr>
+                <tr><td style="color:yellow;" colspan="2"><center>There are {{index|add:"-1"}} patients ahead of you</center></td></tr>
+                {% endif %}
+            {% endif %}
+            {% endfor %}
+            {% endfor %}
+        </table>
+    </div>
+</div>
+{% endfor %}
+{% endif %}
+{% endblock %}
