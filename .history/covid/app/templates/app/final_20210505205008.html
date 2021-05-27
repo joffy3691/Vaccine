@@ -1,0 +1,115 @@
+<style>
+    .final-receipt {
+        margin-top: 150px;
+        background-color: white;
+        border-radius:20px;
+        border: 1px solid black;
+        padding: 20px;
+        width: 100%;
+    }
+
+    .details-overlay {
+        display: flex;
+    }
+
+    .patient-details, .hospital-details {
+        padding: 20px;
+        border-radius: 20px;
+        width: 100%;
+        text-align: center;
+    }
+
+    .status {
+        border-radius: 20px;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .success {
+        color: green;
+    }
+
+    .warning {
+        color: yellow;
+    }
+
+    .final-receipt ul li{
+        list-style-type: none;
+        margin-left: 125px;
+    }
+</style>
+{% extends "app/base.html" %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<div class="final-receipt">
+    <h1>Allotment Status</h1>
+    <hr>
+    {% for patient in filled_form %}
+    <div class="details-overlay">    
+        {% for booking in booked_hospital %}
+        {% for hospital in hospitals %}
+        {% if hospital.id == booking.hospital %}
+        <div class="patient-details">
+            <h3>Patient Details:</h3>
+            <p>Patient Name: {{user.first_name}} {{user.last_name}}</p>
+            <p>Age: {{patient.age}} yrs</p>
+            <div class="comorbidites">
+                Comorbidities:  
+                    <ul>
+                    {% if patient.pneumonia %}<li>pneumonia</li>{% endif %}
+                    {% if patient.breathing %}<li>breathing problem</li>{% endif %}
+                    {% if patient.pregnant %}<li>pregnant</li>{% endif %}
+                    {% if patient.smoker %}<li>smoker</li>{% endif %}
+                    {% if patient.diabetic %}<li>diabetic</li>{% endif %}
+                    {% if patient.ckd %}<li>ckd</li>{% endif %}  
+                    {% if patient.copd %}<li>copd</li>{% endif %} 
+                    {% if patient.immunocompromised %}<li>immunocompromised</li>{% endif %}
+                    {% if patient.heart %}<li>heart disease</li>{% endif %}
+                    {% if patient.asthma %}<li>asthma</li>{% endif %}
+                    {% if patient.blood %}<li>blood disease</li>{% endif %}
+                    {% if patient.obesity %}<li>obesity</li>{% endif %}
+                    </ul>
+            </div>
+        </div>
+        <div class="hospital-details">
+            <h3>Hospital Details:</h3>
+            <p>Hospital: {{hospital.name}}</p>
+            <p>Address: {{hospital.address}}</p>
+            <p>Phone: {{hospital.phone}}</p>
+        </div>
+    </div>
+                           
+        {% if booking.fulfilled %}
+        <div class="status">
+            <p class="success">Status: Confirmed</p>
+            {% if booking.confirmtime == "NA" %}
+            <form method='post'>
+                {% csrf_token %}
+                Choose a slot: <input type="date" id="date" name="date" min="{{Mindate}}" max="{{Maxdate}}">
+                <select name="time" id="time">
+                    <option value="10am-12am">10am-12am</option>
+                    <option value="1pm-3pm">1pm-3pm</option>
+                    <option value="4pm-6pm">4pm-6pm</option>
+                </select>
+                <input type="submit" value="Book Slot">
+            </form>
+            {% else %}
+                <p class="success">Confirmation Time: {{booking.confirmtime}} IST </p>
+            {% endif %}
+        </div>
+            {% else %}
+        <div class="status">
+            <p class="warning">Status: Pending</p>
+            <p class="warning">There are {{queue}} patients in the queue</p>
+            <p class="warning">There are {{index|add:"-1"}} patients ahead of you</p>
+        </div>
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+{% endfor %}
+    </div>
+</div>
+{% endfor %}
+{% endif %}
+{% endblock %}

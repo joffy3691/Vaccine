@@ -1,0 +1,65 @@
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    
+    .login-wrapper{
+        border: 1px solid black;
+        border-radius: 20px;
+        margin-top: 150px;
+        padding: 40px;
+        background-color: #FF416C;
+    }
+
+    .username, .password {
+        display: flex;
+        flex-direction: column;
+    }
+
+    input[type=text], input[type=password] {
+        border-radius: 20px;
+        border: 1px solid black;
+        padding: 5px;
+        outline: none;
+    }
+
+    input[type=submit] {
+        outline: none;
+        border: 1px solid orangered;
+        background-color: orangered;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 20px;
+    }
+
+
+</style>
+{% extends "app/base.html" %}
+{%load crispy_forms_tags %}
+{% block content %}
+<div class="login-wrapper">
+    <div class="content-section">
+        <form id="login_form" method="post" action="{%url 'login' %}">
+            {% csrf_token %}
+                    <div class="username">
+                        Username
+                        <input type="text" name="username" value="" id="username" size="50" />
+                    </div>
+                    <div class="password">
+                        Password
+                        <input type="password" name="password" value="" id="password" minlength="8" size="50" />
+                    </div>
+            {% if error %}
+            {{error}}
+            {% endif %}
+            <input type="submit" name="submit" value="submit" />
+        </form>
+        <div class="border-top pt-3">
+            <small class="text-muted">Need an Account<a class="ml-2" href="{%url 'psup' %}">Sign up as patient</a>  <a class="ml-2" href="{%url 'hsup' %}">Sign up as hospital</a></small>
+        </div>
+    </div>
+    <div class="picture"></div>
+</div>
+{% endblock %}

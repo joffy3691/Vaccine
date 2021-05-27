@@ -1,6 +1,7 @@
+
 <style>
   .hospital-page {
-    margin-top: 100px;
+    margin: 100px 0;
     width: 100%;
   }
   .card-wrappers {
@@ -15,6 +16,7 @@
 {% extends "app/base.html" %}
 
 {% block content %}
+{% load static %}
 {% if user.is_authenticated %}
 <div class="hospital-page">
     <h5 class="display-2">
@@ -58,7 +60,7 @@
     
       <div class="col-sm">
       <div class="card" style="width: 20rem; border: 1px solid black;">
-        <img src="https://lh3.googleusercontent.com/proxy/ai5CGH4fVFtaim2n7LsyZlClLitipiqRMCU54SvZkxcw4bXugDk0QTH4W1Obv_3AkJuVYp5W-iSz_uekeSiPcTqW2TGM14tTdw" height="288" class="card-img-top" alt="...">
+        <img src="{%static 'app/assets/img/update_vaccine.jpeg' %}" height="288" class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title">3) Vaccine Updation</h5>
           <p class="card-text">Update the number of vaccines, upon the arrival of a fresh batch.</p>

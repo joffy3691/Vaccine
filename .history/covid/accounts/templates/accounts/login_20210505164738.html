@@ -1,0 +1,74 @@
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    
+    .login-wrapper{
+        border: 1px solid black;
+        border-radius: 20px;
+        margin-top: 150px;
+        padding: 40px;
+        background-color: #FF416C;
+    }
+
+    .username, .password {
+        display: flex;
+        flex-direction: column;
+    }
+
+    input[type=text], input[type=password] {
+        border-radius: 20px;
+        border: 1px solid black;
+        padding: 5px 15px;
+        outline: none;
+    }
+
+    input[type=submit] {
+        outline: none;
+        border: 1px solid orangered;
+        background-color: orangered;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 40px;
+        margin: 10px 0;
+        text-transform: uppercase;
+        font-weight: 700;
+    }
+    input[type=text]:focus, input[type=password]:focus {
+        border: 1px solid rgb(34, 112, 214);
+    }
+    
+
+
+</style>
+{% extends "app/base.html" %}
+{%load crispy_forms_tags %}
+{% block content %}
+<div class="login-wrapper">
+    <div class="content-section">
+        <form id="login_form" method="post" action="{%url 'login' %}">
+            {% csrf_token %}
+                    <div class="username">
+                        Username
+                        <input type="text" name="username" value="" id="username" size="20" />
+                    </div>
+                    <div class="password">
+                        Password
+                        <input type="password" name="password" value="" id="password" minlength="8" size="20" />
+                    </div>
+            {% if error %}
+            {{error}}
+            {% endif %}
+            <input type="submit" name="submit" value="Log In" />
+        </form>
+        <div class="border-top pt-3">
+            <small class="text-muted">Need an Account<a class="ml-2" href="{%url 'psup' %}">Sign up as patient</a>  <a class="ml-2" href="{%url 'hsup' %}">Sign up as hospital</a></small>
+        </div>
+    </div>
+    <div class="picture">
+        <img src="{% static 'app/assets/img/login-bg.jpg' %}"
+    </div>
+</div>
+{% endblock %}

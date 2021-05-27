@@ -1,0 +1,54 @@
+<style>
+  .hospital-list {
+    margin-top: 150px;
+    border: 1px solid black;
+    border-radius: 30px;
+    width: 100%;
+    padding: 20px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .hospital-container {
+    text-align: center;
+    padding: 20px;
+    background-color: lightgreen;
+    border-radius: 15px;
+    width: 50%;
+    margin: 50px 0;
+    font-size: 20px;
+  }
+  .vaccine {
+    padding: 20px;
+    width: 50%;
+    text-align: center;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    background-color: lightgreen;
+    font-size: 20px;
+  }
+
+</style>
+{% extends "app/base.html" %}
+{% block content %}
+{% if user.is_authenticated %}
+{{ form.errors }}
+<div class="hospital-list">
+  <h2>Vaccine Updation</h2>
+  <div class="hospital-container">
+      <form method='post'>
+          {% csrf_token %}
+        <h4>{{hospital.name}}</h4>
+        <p>Address:{{hospital.address}}</p>
+        <p>Available Vaccine: {{hospital.available_Vaccine}}</p>
+        <p>Queue: {{hospital.que}}</p>
+        </div>
+        <div class="vaccine">
+          Number of Vaccines: xs<input type="number" name="vaccine" value="0">
+          <button name="hospital" type="submit" class="btn btn-dark" style="border-radius: 15px; margin-top: 20px;" value="Update">Update Inventory</button>
+        </div>
+      </form>
+{% endif %}
+</div>
+{% endblock %}
