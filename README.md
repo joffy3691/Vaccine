@@ -46,8 +46,9 @@ Change admin details
   
 ## Authors
 
-- [@PratypartyY2K](https://github.com/PratypartyY2K)
 - [@joffy2691](https://github.com/joffy3691)
+- [@PratypartyY2K](https://github.com/PratypartyY2K)
+
 
 
   
