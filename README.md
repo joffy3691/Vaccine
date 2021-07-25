@@ -68,22 +68,22 @@ Change admin details
 ## Screenshots
 
 **Landing Page**
-![Landing Page](/screenshots/landing-page.png)
+![Landing Page](/landing-page.png)
 
 **Login Page**
-![Login Page](/screenshots/login-page.png)
+![Login Page](/login-page.png)
 
 **Patient Home Page**
-![Patient Home Page](/screenshots/patient-landing-page.png)
+![Patient Home Page](/patient-landing-page.png)
 
 **Choose Hospital**
-![Choose Hospital](/screenshots/choose-hospital.png)
+![Choose Hospital](/choose-hospital.png)
 
 **Allotment Status**
-![Allotment Status](/screenshots/allotment-status.png)
+![Allotment Status](/allotment-status.png)
 
 **Hospital Landing Page**
-![Hospital Landing Page](/screenshots/hospital-landing-page.png)
+![Hospital Landing Page](/hospital-landing-page.png)
 
 **Vaccine Inventory**
-![Vaccine Inventory](/screenshots/update-inventory.png)
+![Vaccine Inventory](/update-inventory.png)
