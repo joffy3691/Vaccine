@@ -46,7 +46,7 @@ Change admin details
   
 ## Authors
 
-- [@joffy2691](https://github.com/joffy3691)
+- [@joffy3691](https://github.com/joffy3691)
 - [@PratypartyY2K](https://github.com/PratypartyY2K)
 
 
@@ -69,22 +69,29 @@ Change admin details
 ## Screenshots
 
 **Landing Page**
+
 ![Landing Page](/landing-page.png)
 
 **Login Page**
+
 ![Login Page](/login-page.png)
 
 **Patient Home Page**
+
 ![Patient Home Page](/patient-landing-page.png)
 
 **Choose Hospital**
+
 ![Choose Hospital](/choose-hospital.png)
 
 **Allotment Status**
+
 ![Allotment Status](/allotment-status.png)
 
 **Hospital Landing Page**
+
 ![Hospital Landing Page](/hospital-landing-page.png)
 
 **Vaccine Inventory**
+
 ![Vaccine Inventory](/update-inventory.png)
