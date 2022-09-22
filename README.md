@@ -13,7 +13,7 @@ vaccination above others, by the use of our ML Algorithm.
 Clone the project
 
 ```bash
-  git clone https://github.com/PratypartyY2K/Vaccine.git
+  git clone https://github.com/vishnu-06/Vaccine-Allotment.git
 ```
 
 Install dependencies
@@ -46,7 +46,7 @@ Change admin details
   
 ## Authors
 
-- [@joffy3691](https://github.com/joffy3691)
+- [@vishnu-06](https://github.com/vishnu-06)
 - [@PratypartyY2K](https://github.com/PratypartyY2K)
 
 
