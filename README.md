@@ -52,9 +52,8 @@ Change admin details
 
 
   
-## Documentation
-
-[Documentation](https://docs.google.com/document/d/1CBZSqrzypt07gS55vXSNMAxyukRMsL4qNWYOFcsDocA/edit?usp=sharing)
+## Document
+[Link to Document](https://github.com/vishnu-06/Vaccine-Allotment/blob/master/Covid%20Vaccination%20Enrollment.pdf)
 
   
 ## Tech Stack
